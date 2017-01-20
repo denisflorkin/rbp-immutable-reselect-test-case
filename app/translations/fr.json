@@ -1,0 +1,12 @@
+{
+  "neo.components.Header.header": "Menu",
+  "neo.components.Header.links.homepage": "Dashboard",
+  "neo.components.Header.links.profile": "Profile",
+  "neo.components.Header.links.about": "A propos",
+  "app.components.Footer.header": "Footer",
+  "app.components.HomePage.header": "Dashboard",
+  "app.components.NotFoundPage.header": "Page introuvable",
+  "app.components.UserProfile.header": "Profile",
+  "app.components.UserProfile.profilPicOf": "photo de profile de",
+  "app.containers.ProfilePage.header": "Page de Profil"
+}

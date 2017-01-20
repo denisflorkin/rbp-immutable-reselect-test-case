@@ -2,16 +2,18 @@
  * Testing our link component
  */
 
-import React from 'react';
+// // import expect from 'expect';
 import { shallow } from 'enzyme';
+import React from 'react';
 
 import A from '../index';
+
 
 const href = 'http://mxstbr.com/';
 const children = (<h1>Test</h1>);
 const renderComponent = (props = {}) => shallow(
-  <A href={href} {...props}>
-    {children}
+  <A href={ href } { ...props }>
+    { children }
   </A>
 );
 

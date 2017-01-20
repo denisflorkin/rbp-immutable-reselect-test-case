@@ -1,17 +1,23 @@
 /*
- * HomePage Messages
+ * Header Messages
  *
- * This contains all the text for the HomePage component.
+ * This contains all the text for the Header component.
  */
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  home: {
-    id: 'boilerplate.components.Header.home',
+  header: {
+    id: 'neo.components.Header.header',
     defaultMessage: 'Home',
   },
-  features: {
-    id: 'boilerplate.components.Header.features',
-    defaultMessage: 'Features',
+  links: {
+    homepage: {
+      id: 'neo.components.Header.links.homepage',
+      defaultMessage: 'Dashboard',
+    },
+    about: {
+      id: 'neo.components.Header.links.about',
+      defaultMessage: 'About',
+    },
   },
 });

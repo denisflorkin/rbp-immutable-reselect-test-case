@@ -19,7 +19,20 @@ injectGlobal`
   #app {
     background-color: #fafafa;
     min-height: 100%;
+    height: 100%;
     min-width: 100%;
+  }
+  /**
+   * Set Up main Header—Main—Footer flex layout
+   */
+  div[data-reactroot] {
+    min-height: 100%;
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    & > * { flex-basis: 1 1 auto }
+    & > *:nth-child(2) { flex-grow: 99 }
   }
 
   p,

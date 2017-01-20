@@ -1,47 +1,75 @@
 /**
  *
- * App
+ * App.react.js
  *
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
+ *
+ * NOTE: while this component should technically be a stateless functional
+ * component (SFC), hot reloading does not currently support SFCs. If hot
+ * reloading is not a necessity for you then you can refactor it and remove
+ * the linting exception.
  */
 
-import React from 'react';
-import Helmet from 'react-helmet';
-import styled from 'styled-components';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+/** import actions */
+import {
+  loadDefaultData,
+} from './actions'
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import withProgressBar from 'components/ProgressBar';
+/** import selectors */
+// import {
+//   selectUserID,
+// } from './selectors'
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
-export function App(props) {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-        meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
-        ]}
-      />
-      <Header />
-      {React.Children.toArray(props.children)}
-      <Footer />
-    </AppWrapper>
-  );
+
+export class App extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  static propTypes = {
+    onRequestDefaultData: PropTypes.func,
+    children: PropTypes.node,
+    router: PropTypes.shape({
+      location: PropTypes.shape({
+        pathname: PropTypes.string,
+      }),
+    }),
+  };
+
+  componentDidMount() {
+    this.props.onRequestDefaultData()
+  }
+
+
+  render() {
+    // extract pathname
+    const { router: { location: { pathname } } } = this.props
+
+    return (
+      <div>
+        <Header pathname={ pathname } />
+        { React.Children.toArray(this.props.children) }
+        <Footer />
+      </div>
+    );
+  }
+}
+// export default App
+export function mapDispatchToProps(dispatch) {
+  return {
+    onRequestDefaultData: () => {
+      dispatch(loadDefaultData())
+    },
+  };
 }
 
-App.propTypes = {
-  children: React.PropTypes.node,
-};
+const mapStateToProps = createStructuredSelector({
+  // userID: selectUserID(), // probably useless to have this here for nothing
+});
 
-export default withProgressBar(App);
+// Wrap the component to inject dispatch and state into it
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,29 +1,24 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
+/**
+*
+* Footer
+*
+*/
 
-import A from 'components/A';
-import LocaleToggle from 'containers/LocaleToggle';
-import Wrapper from './Wrapper';
+import React from 'react';
+
+import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+
+import A from '../A'
 
 function Footer() {
   return (
-    <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-          }}
-        />
-      </section>
-    </Wrapper>
+    <div>
+      <FormattedMessage { ...messages.header } />
+      <A href="http://example.com" target="_blank">
+        Liens externe
+      </A>
+    </div>
   );
 }
 

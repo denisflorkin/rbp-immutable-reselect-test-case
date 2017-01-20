@@ -14,8 +14,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
+import FontFaceObserver from 'fontfaceobserver';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -23,8 +23,8 @@ import App from 'containers/App';
 
 // Import selector for `syncHistoryWithStore`
 import { makeSelectLocationState } from 'containers/App/selectors';
+// import { selectLocationState } from 'containers/App/selectors';
 
-// Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon, the manifest.json file and the .htaccess file
@@ -66,7 +66,9 @@ const store = configureStore(initialState, browserHistory);
 // Sync history and store, as the react-router-redux reducer
 // is under the non-default key ("routing"), selectLocationState
 // must be provided for resolving how to retrieve the "route" in the state
+// import { selectLocationState } from 'containers/App/selectors';
 const history = syncHistoryWithStore(browserHistory, store, {
+  // selectLocationState: selectLocationState(),
   selectLocationState: makeSelectLocationState(),
 });
 
@@ -78,22 +80,22 @@ const rootRoute = {
 
 const render = (messages) => {
   ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
+    <Provider store={ store } >
+      <LanguageProvider messages={ messages } >
         <Router
-          history={history}
-          routes={rootRoute}
-          render={
+          history={ history }
+          routes={ rootRoute }
+          render={  // eslint-disable-line react/jsx-curly-spacing
             // Scroll to top when going to a new page, imitating default browser
             // behaviour
-            applyRouterMiddleware(useScroll())
-          }
+            applyRouterMiddleware(useScroll()) }
         />
       </LanguageProvider>
     </Provider>,
     document.getElementById('app')
   );
 };
+
 
 // Hot reloadable translation json files
 if (module.hot) {
@@ -107,11 +109,11 @@ if (module.hot) {
 // Chunked polyfill for browsers without Intl support
 if (!window.Intl) {
   (new Promise((resolve) => {
-    resolve(import('intl'));
+    resolve(System.import('intl'));
   }))
     .then(() => Promise.all([
-      import('intl/locale-data/jsonp/en.js'),
-      import('intl/locale-data/jsonp/de.js'),
+      System.import('intl/locale-data/jsonp/en.js'),
+      System.import('intl/locale-data/jsonp/fr.js'),
     ]))
     .then(() => render(translationMessages))
     .catch((err) => {
@@ -124,6 +126,8 @@ if (!window.Intl) {
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
 // we do not want it installed
+// import { install } from 'offline-plugin/runtime';
+// install();
 if (process.env.NODE_ENV === 'production') {
   require('offline-plugin/runtime').install(); // eslint-disable-line global-require
 }

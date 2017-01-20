@@ -1,31 +1,39 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
 import messages from './messages';
 
-class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-        <A href="https://twitter.com/mxstbr">
-          <Img src={Banner} alt="react-boilerplate - Logo" />
-        </A>
-        <NavBar>
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.home} />
-          </HeaderLink>
-          <HeaderLink to="/features">
-            <FormattedMessage {...messages.features} />
-          </HeaderLink>
-        </NavBar>
-      </div>
-    );
-  }
+import Link from '../Link'
+
+function Header(props) {
+  const { pathname } = props
+  return (
+    <nav>
+      <Link
+        to="/"
+        className={ pathname === '/' ? 'active-route' : '' }
+      >
+        <FormattedMessage { ...messages.links.homepage } />
+      </Link>
+      {/* <Link
+        to="/profile"
+        className={ pathname === '/profile' ? 'active-route' : '' }
+      >
+        <FormattedMessage { ...messages.links.profile } />
+      </Link> */}
+      <Link
+        to="/about"
+        className={ pathname === '/about' ? 'active-route' : '' }
+      >
+        {/* About */}
+        <FormattedMessage { ...messages.links.about } />
+      </Link>
+    </nav>
+  );
+}
+
+Header.propTypes = {
+  pathname: React.PropTypes.string,
 }
 
 export default Header;

@@ -102,6 +102,15 @@
       }
     },
     "rules": {
+      "semi": 0,
+      "array-bracket-spacing": [
+        1,
+        "always",
+        {
+          "objectsInArrays": false,
+          "arraysInArrays": false
+        }
+      ],
       "arrow-parens": [
         "error",
         "always"
@@ -111,7 +120,7 @@
         "as-needed"
       ],
       "comma-dangle": [
-        2,
+        1,
         "always-multiline"
       ],
       "import/imports-first": 0,
@@ -137,7 +146,6 @@
       "jsx-a11y/role-supports-aria-props": 2,
       "max-len": 0,
       "newline-per-chained-call": 0,
-      "no-confusing-arrow": 0,
       "no-console": 1,
       "no-use-before-define": 0,
       "prefer-template": 2,
@@ -149,12 +157,18 @@
       ],
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
+      "react/jsx-curly-spacing": [
+        1,
+        "always", { "spacing": { "objectLiterals": "never" } }
+      ],
       "react/require-extension": 0,
       "react/self-closing-comp": 0,
+      "react/no-unused-prop-types": [
+        2, { "skipShapeProps": true }
+      ],
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
-      "require-yield": 0,
-      "import/no-webpack-loader-syntax": 0
+      "require-yield": 0
     },
     "settings": {
       "import/resolver": {

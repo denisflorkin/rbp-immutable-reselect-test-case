@@ -1,29 +1,16 @@
-/**
- * The global state selectors
- */
+// makeSelectLocationState expects a plain JS object for the routing state
+import { createSelector } from 'reselect'
 
-import { createSelector } from 'reselect';
+const selectGlobal = () => (state) => state.get('global');
 
-const selectGlobal = (state) => state.get('global');
-
-const makeSelectCurrentUser = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('currentUser')
+const selectUserData = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.get('userData')
 );
 
-const makeSelectLoading = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('loading')
-);
-
-const makeSelectError = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.get('error')
-);
-
-const makeSelectRepos = () => createSelector(
-  selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
+const selectUserID = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.getIn([ 'userData', 'userID' ])
 );
 
 const makeSelectLocationState = () => {
@@ -44,9 +31,7 @@ const makeSelectLocationState = () => {
 
 export {
   selectGlobal,
-  makeSelectCurrentUser,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectRepos,
+  selectUserData,
   makeSelectLocationState,
+  selectUserID,
 };

@@ -9,41 +9,49 @@
  * case YOUR_ACTION_CONSTANT:
  *   return state.set('yourStateVariable', true);
  */
-
 import { fromJS } from 'immutable';
 
 import {
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS,
-  LOAD_REPOS_ERROR,
+  LOAD_DEFAULT_DATA,
+  LOAD_DEFAULT_DATA_SUCCESS,
+  LOAD_DEFAULT_DATA_FAIL,
 } from './constants';
+
 
 // The initial state of the App
 const initialState = fromJS({
-  loading: false,
+  // userID: Cookie.get('userID'),            // read from cookie
+  // userID: 'eHRSQHqergrz8tyjQetyjEtyry8G4P3',  // mock for now
+  userData: false,
+  teamMembers: false,
+  // profileData: {},
+  isFetching: false,
   error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
 });
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_REPOS:
+    case LOAD_DEFAULT_DATA:
+      // console.log('disaptcher : LOAD_DEFAULT_DATA case')
       return state
-        .set('loading', true)
+        .set('isFetching', true)
         .set('error', false)
-        .setIn(['userData', 'repositories'], false);
-    case LOAD_REPOS_SUCCESS:
+        .set('userData', false);
+
+    case LOAD_DEFAULT_DATA_SUCCESS:
+      console.log('disaptcher : LOAD_DEFAULT_DATA_SUCCESS case', action)
       return state
-        .setIn(['userData', 'repositories'], action.repos)
-        .set('loading', false)
-        .set('currentUser', action.username);
-    case LOAD_REPOS_ERROR:
+        .set('isFetching', false)
+        .set('error', false)
+        .set('userData', action.data);
+
+    case LOAD_DEFAULT_DATA_FAIL:
+      // console.log('disaptcher : LOAD_DEFAULT_DATA_FAIL case', action)
       return state
+        .set('isFetching', false)
         .set('error', action.error)
-        .set('loading', false);
+        .set('isFetching', false);
+
     default:
       return state;
   }
