@@ -26,11 +26,6 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
     ]),
   }
 
-  preRenderUserProfile(userData) {
-    return userData ?
-      (<UserProfileSettings { ...userData } />) : (<p>loading</p>)
-  }
-
   getHelmet(userData) {
     const username =
       userData ? userData.username : 'loading'
@@ -43,6 +38,11 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
       />)
   }
 
+  preRenderUserProfile(userData) {
+    return userData ?
+      (<UserProfileSettings { ...userData } />) : (<p>loading</p>)
+  }
+
   render() {
     const { userData } = this.props
 
@@ -50,8 +50,8 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
     return (
       <div>
         { this.getHelmet(userData) }
+        <FormattedMessage { ...messages.header } />
         { this.preRenderUserProfile(userData) }
-        {/* <FormattedMessage { ...messages.header } /> */}
       </div>
     );
   }
