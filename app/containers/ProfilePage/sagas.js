@@ -2,7 +2,7 @@
  * Gets the default data of the user
  */
 import { takeLatest } from 'redux-saga';
-import { call, put, fork, } from 'redux-saga/effects';
+import { call, put, fork } from 'redux-saga/effects';
 import request from 'utils/request';
 
 import { LOAD_PROFILE } from './constants';

@@ -7,16 +7,16 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   header: {
-    id: 'neo.components.Header.header',
+    id: 'app.components.Header.header',
     defaultMessage: 'Home',
   },
   links: {
     homepage: {
-      id: 'neo.components.Header.links.homepage',
+      id: 'app.components.Header.links.homepage',
       defaultMessage: 'Dashboard',
     },
     about: {
-      id: 'neo.components.Header.links.about',
+      id: 'app.components.Header.links.about',
       defaultMessage: 'About',
     },
   },

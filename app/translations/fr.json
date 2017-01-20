@@ -1,12 +1,15 @@
 {
-  "neo.components.Header.header": "Menu",
-  "neo.components.Header.links.homepage": "Dashboard",
-  "neo.components.Header.links.profile": "Profile",
-  "neo.components.Header.links.about": "A propos",
+  "app.components.Header.header": "Menu",
+  "app.components.Header.links.homepage": "Dashboard",
+  "app.components.Header.links.profile": "Profile",
+  "app.components.Header.links.about": "A propos",
   "app.components.Footer.header": "Footer",
   "app.components.HomePage.header": "Dashboard",
   "app.components.NotFoundPage.header": "Page introuvable",
   "app.components.UserProfile.header": "Profile",
   "app.components.UserProfile.profilPicOf": "photo de profile de",
-  "app.containers.ProfilePage.header": "Page de Profil"
+  "app.components.UserProfileSettings.header": "Modifications des infos",
+
+  "app.containers.ProfilePage.header": "Page de Profil",
+  "app.containers.ProfileSettingsPage.header": "Profile: modifier"
 }

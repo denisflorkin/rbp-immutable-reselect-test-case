@@ -1,6 +1,6 @@
 /**
 *
-* UserProfile
+* UserProfileSettings
 *
 */
 
@@ -12,13 +12,12 @@ import messages from './messages';
 import Avatar from '../Avatar/'
 
 
-export function UserProfile(props) { // eslint-disable-line no-unused-vars
+export function UserProfileSettings(props) { // eslint-disable-line no-unused-vars
   /**
    *    extract props
    */
   const userData = props
   const { userID, username, level, avatarURL } = userData
-
   return (
     <div data-userID={ userID }>
       <h1><FormattedMessage { ...messages.header } /></h1>
@@ -27,8 +26,9 @@ export function UserProfile(props) { // eslint-disable-line no-unused-vars
         title={ `${messages.profilPicOf.defaultMessage} ${username}` }
         alt={ `${messages.profilPicOf.defaultMessage} ${username}` }
       />
-      <h2>{ username }</h2>
-      <p>{ level }</p>
+      <button> EDIT </button>
+      <h2>{ username }</h2><button> EDIT </button>
+      <p>{ level }</p><button> EDIT </button>
     </div>
   );
 }
@@ -39,11 +39,11 @@ export function UserProfile(props) { // eslint-disable-line no-unused-vars
  *
  */
 
-UserProfile.propTypes = {
+UserProfileSettings.propTypes = {
   username: PropTypes.string,
   userID: PropTypes.string,
   level: PropTypes.string,
   avatarURL: PropTypes.string,
 };
 
-export default UserProfile;
+export default UserProfileSettings;

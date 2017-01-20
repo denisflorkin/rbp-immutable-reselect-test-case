@@ -28,7 +28,7 @@ export class ProfilePage extends React.PureComponent { // eslint-disable-line re
     return (
       loggedInUserData && profileData &&
       loggedInUserData.userID === profileData.userID) ?
-        (<p><Link to="profile-settings" >EDIT</Link></p>) : ([])
+        (<p><Link to="/profile-settings" >EDIT</Link></p>) : ([])
   }
 
   getHelmet(profileData) {
