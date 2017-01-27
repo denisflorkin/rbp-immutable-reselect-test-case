@@ -5,11 +5,31 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  REQUEST_SETTINGS_UPDATE,
+  REQUEST_SETTINGS_UPDATE_SUCCESS,
+  REQUEST_SETTINGS_UPDATE_FAIL,
 } from './constants';
 
-export function defaultAction() {
+export function updateSetting(payload) {
   return {
-    type: DEFAULT_ACTION,
+    type: REQUEST_SETTINGS_UPDATE,
+    payload: {
+      name: payload.name,
+      value: payload.value,
+    },
+  };
+}
+
+export function updateSettingSuccess(response) {
+  return {
+    type: REQUEST_SETTINGS_UPDATE_SUCCESS,
+    response,
+  };
+}
+
+export function updateSettingFail(error) {
+  return {
+    type: REQUEST_SETTINGS_UPDATE_FAIL,
+    error,
   };
 }

@@ -4,15 +4,32 @@
  *
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect'
 
 import UserProfileSettings from 'components/UserProfileSettings'
-// import selectProfileSettingsPage from './selectors';
+
 import { selectUserData } from 'containers/App/selectors'
+
+import // selectProfileSettingsPageDomain,
+{
+  selectProfileSettingsPage,
+  selectError,
+  selectIsFetching,
+  selectSuccessResponse,
+  selectRequestedSettingUpdateName,
+  selectRequestedSettingUpdateValue,
+} from './selectors'
+
+
+import {
+  updateSetting,
+  // updateSettingSuccess,
+  // updateSettingFail,
+} from './actions'
 
 import messages from './messages';
 
@@ -20,10 +37,12 @@ import messages from './messages';
 export class ProfileSettingsPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   static propTypes = {
-    userData: React.PropTypes.oneOfType([
-      React.PropTypes.bool,
-      React.PropTypes.object,
-    ]),
+    userData: PropTypes.oneOfType([ PropTypes.bool, PropTypes.object ]),
+    isFetching: PropTypes.bool,
+    error: PropTypes.oneOfType([ PropTypes.bool, PropTypes.object ]),
+    successResponse: PropTypes.oneOfType([ PropTypes.bool, PropTypes.object ]),
+    settingUpdateName: PropTypes.oneOfType([ PropTypes.bool, PropTypes.string ]),
+    settingUpdateValue: PropTypes.oneOfType([ PropTypes.bool, PropTypes.string ]),
   }
 
   getHelmet(userData) {
@@ -45,6 +64,15 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
 
   render() {
     const { userData } = this.props
+    const {
+      error,
+      isFetching,
+      settingUpdateName,
+      settingUpdateValue,
+      successResponse,
+    } = this.props
+
+    console.log(error, isFetching, settingUpdateName, settingUpdateValue, successResponse)
 
 
     return (
@@ -59,13 +87,26 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
 
 const mapStateToProps = createStructuredSelector({
   userData: selectUserData(),
+  profileSettingsPage: selectProfileSettingsPage(),
+  error: selectError(),
+  isFetching: selectIsFetching(),
+  successResponse: selectSuccessResponse(),
+  requestedSettingUpdateName: selectRequestedSettingUpdateName(),
+  requestedSettingUpdateValue: selectRequestedSettingUpdateValue(),
 })
-// selectProfileSettingsPage();
 
-function mapDispatchToProps(/* dispatch */) {
-  return {}
-    // dispatch,
-  // };
+export function mapDispatchToProps(dispatch) {
+  return {
+    onRequestSettingUpdate: (payload) => {
+      dispatch(updateSetting(payload))
+    },
+    // onRequestSettingUpdateSuccess: () => {
+    //   dispatch(updateSettingSuccess())
+    // },
+    // onRequestSettingUpdateFail: () => {
+    //   dispatch(updateSettingFail())
+    // },
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileSettingsPage);
