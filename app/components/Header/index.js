@@ -15,12 +15,12 @@ function Header(props) {
       >
         <FormattedMessage { ...messages.links.homepage } />
       </Link>
-      {/* <Link
-        to="/profile"
-        className={ pathname === '/profile' ? 'active-route' : '' }
+      <Link
+        to="/contracts"
+        className={ pathname === '/contracts' ? 'active-route' : '' }
       >
-        <FormattedMessage { ...messages.links.profile } />
-      </Link> */}
+        <FormattedMessage { ...messages.links.contracts } />
+      </Link>
       <Link
         to="/about"
         className={ pathname === '/about' ? 'active-route' : '' }

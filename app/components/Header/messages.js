@@ -15,6 +15,10 @@ export default defineMessages({
       id: 'app.components.Header.links.homepage',
       defaultMessage: 'Dashboard',
     },
+    contracts: {
+      id: 'app.components.Header.links.contracts',
+      defaultMessage: 'Contracts',
+    },
     about: {
       id: 'app.components.Header.links.about',
       defaultMessage: 'About',
