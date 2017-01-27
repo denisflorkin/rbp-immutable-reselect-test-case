@@ -159,12 +159,20 @@
       "react/jsx-no-target-blank": 0,
       "react/jsx-curly-spacing": [
         1,
-        "always", { "spacing": { "objectLiterals": "never" } }
+        "always",
+        {
+          "spacing": {
+            "objectLiterals": "never"
+          }
+        }
       ],
       "react/require-extension": 0,
       "react/self-closing-comp": 0,
       "react/no-unused-prop-types": [
-        2, { "skipShapeProps": true }
+        2,
+        {
+          "skipShapeProps": true
+        }
       ],
       "redux-saga/no-yield-in-race": 2,
       "redux-saga/yield-effects": 2,
@@ -233,6 +241,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.2",
     "ip": "1.1.4",
+    "jest-cli": "^18.1.0",
     "lodash": "4.17.2",
     "minimist": "1.2.0",
     "react": "15.4.1",
@@ -288,7 +297,6 @@
     "html-webpack-plugin": "2.24.1",
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
-    "jest-cli": "18.0.0",
     "lint-staged": "3.2.1",
     "ngrok": "2.2.4",
     "node-plop": "0.5.4",

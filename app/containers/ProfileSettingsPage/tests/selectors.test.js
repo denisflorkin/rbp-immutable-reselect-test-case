@@ -1,11 +1,16 @@
-// import { selectProfileSettingsPageDomain } from '../selectors';
-// import { fromJS } from 'immutable';
-// import expect from 'expect';
+import { fromJS } from 'immutable';
 
-// const selector = selectProfileSettingsPageDomain();
+import { selectProfileSettingsPageDomain } from '../selectors';
+
+
+const fixture = fromJS({ p: 'v' })
+const globalStateFix = fromJS({
+  profileSettingsPage: fixture,
+})
+const selector = selectProfileSettingsPageDomain();
 
 describe('selectProfileSettingsPageDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect('Test case').toEqual(false);
+  it('should return the inital state', () => {
+    expect(selector(globalStateFix)).toEqual(fixture);
   });
 });
