@@ -9,20 +9,43 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+
+import ContractsList from 'components/ContractsList'
+
 import makeSelectContracts from './selectors';
 import messages from './messages';
 
+
+const fakeData = [
+  {
+    title: 'some title',
+    value: 'foo',
+  }, {
+    title: 'some other title',
+    value: 'bar',
+  }, {
+    title: 'yet another title',
+    value: 'foobar',
+  },
+]
+
 export class Contracts extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const isFetching = false;
     return (
       <div>
         <Helmet
           title="Contracts"
-          meta={[
+          meta={ [
             { name: 'description', content: 'Description of Contracts' },
-          ]}
+          ] }
         />
-        <FormattedMessage {...messages.header} />
+        <ContractsList
+          contracts={ fakeData }
+          loading={ isFetching }
+          error={ false }
+        />
+        <FormattedMessage { ...messages.header } />
       </div>
     );
   }

@@ -1,0 +1,55 @@
+
+image: mwallasch/docker-ruby-node
+
+variables:
+  # GLOBAL
+  LOCAL_DIR: "build/"
+
+  # STAG
+  STAG_REMOTE_DIR: "."
+  STAG_USERNAME: "chaffinccf-blp"
+  STAG_PASSWORD: "Password1"
+  STAG_HOST: "ftp.cluster020.hosting.ovh.net"
+
+  # PROD
+  PROD_REMOTE_DIR: "/www/"
+  PROD_USERNAME: "USERNAME"
+  PROD_PASSWORD: "PASSWORD"
+  PROD_HOST: "ftp.domain.tld"
+
+
+STAG_DEPLOY:
+  stage: deploy
+  script:
+    # install lftp
+    - apt-get update -qq && apt-get install -y -qq lftp
+
+    # brick gitlab-ci sensitive content
+    - echo '' > .gitlab-ci.yml # remove gitlab-ci content before ftp transfert
+
+    # install sass
+    # - gem install sass
+
+    # install node package
+    - npm i
+
+    # build
+    - npm run build
+
+    # set .htaccess for STAG(PROD)
+    # - cat .htaccess-PROD > .htaccess
+
+    # remove useless or potentially SENSITIVE stuffs
+    # - rm .htaccess-PROD
+    # - rm .gitlab-ci.yml
+    # - rm README.md
+    # - rm -rf .git
+
+    # poor's man maintenance mode
+    # - echo '<html><body><h1>Cale Sèche. Le site est en maintenance...</h1></body></html>' > index.html
+
+    # move file form ./build/ to `remote-folder`
+    - lftp -e "mirror -R $LOCAL_DIR $STAG_REMOTE_DIR" -u $STAG_USERNAME,$STAG_PASSWORD $STAG_HOST
+
+  only:
+    - inexistingBranchNameToBeSure
