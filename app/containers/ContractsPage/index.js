@@ -53,6 +53,7 @@ export class ContractsPage extends React.Component { // eslint-disable-line reac
 
 ContractsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  contracts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({

@@ -2,10 +2,11 @@ import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import ListItem from 'components/ListItem';
-import List from 'components/List';
-import LoadingIndicator from 'components/LoadingIndicator';
-import ContractsList from '../index';
+import ContractListItem from 'containers/ContractListItem'
+// import ListItem from 'components/ListItem'
+import List from 'components/List'
+import LoadingIndicator from 'components/LoadingIndicator'
+import ContractsList from '../index'
 
 
 describe('<ContractsList />', () => {
@@ -29,32 +30,36 @@ describe('<ContractsList />', () => {
     expect(renderedComponent.text()).toMatch(/Something went wrong/);
   });
 
-  it('should render the repositories if loading was successful', () => {
-    const repos = [{
-      owner: {
-        login: 'mxstbr',
+  it('should render the contracts if loading was successful', () => {
+    const contractsFixture = [
+      {
+        title: 'some title',
+        value: 'foo',
+      }, {
+        title: 'some other title',
+        value: 'bar',
+      }, {
+        title: 'yet another title',
+        value: 'foobar',
       },
-      html_url: 'https://github.com/react-boilerplate/react-boilerplate',
-      name: 'react-boilerplate',
-      open_issues_count: 20,
-      full_name: 'react-boilerplate/react-boilerplate',
-    }];
+    ]
+
     const renderedComponent = shallow(
       <ContractsList
-        repos={ repos }
+        contracts={ contractsFixture }
         error={ false }
       />
     );
 
     expect(renderedComponent.contains(
-      <List items={ repos } component={ ListItem } />))
+      <List items={ contractsFixture } component={ ContractListItem } />))
         .toEqual(true);
   });
 
   it('should not render anything if nothing interesting is provided', () => {
     const renderedComponent = shallow(
       <ContractsList
-        repos={ false }
+        contracts={ false }
         error={ false }
         loading={ false }
       />

@@ -1,10 +1,41 @@
-// import { fromJS } from 'immutable';
-// import { makeSelectContractsDomain } from '../selectors';
+import { fromJS } from 'immutable';
 
-// const selector = makeSelectContractsDomain();
+import // makeSelectContracts,
+{
+  selectContractsPageDomain,
+}
+from '../selectors';
 
-describe('makeSelectContractsDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+
+// const selector = makeSelectContracts();
+const domainSelector = selectContractsPageDomain();
+
+
+describe('domainSelector', () => {
+  it('should select the home state', () => {
+    const initialContractsStateFixture = fromJS({
+      contracts: false,
+      isFetching: false,
+      error: false,
+    })
+
+    const mockedState = fromJS({
+      contracts: initialContractsStateFixture,
+    });
+    expect(domainSelector(mockedState))
+      .toEqual(initialContractsStateFixture);
   });
 });
+
+// describe('makeSelectUsername', () => {
+//   const usernameSelector = makeSelectUsername();
+//   it('should select the username', () => {
+//     const username = 'mxstbr';
+//     const mockedState = fromJS({
+//       home: {
+//         username,
+//       },
+//     });
+//     expect(usernameSelector(mockedState)).toEqual(username);
+//   });
+// });

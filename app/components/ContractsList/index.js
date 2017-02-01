@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import List from 'components/List';
+import ListItem from 'components/ListItem';
 import ContractListItem from 'containers/ContractListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
 // import RepoContactsListItem from 'containers/RepoContactsListItem';
@@ -12,7 +13,7 @@ function ContractsList({ loading, error, contracts }) {
 
   if (error !== false) {
     const ErrorComponent = () => (
-      <ContractListItem item={ 'Something went wrong, please try again!' } />
+      <ListItem item={ 'Something went wrong, please try again!' } />
     );
     return <List component={ ErrorComponent } />;
   }

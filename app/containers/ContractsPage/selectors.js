@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the contracts state domain
  */
-const selectContractsDomain = () => (state) => state.get('contracts');
+const selectContractsPageDomain = () => (state) => state.get('contracts');
 
 /**
  * Other specific selectors
@@ -15,11 +15,11 @@ const selectContractsDomain = () => (state) => state.get('contracts');
  */
 
 const makeSelectContracts = () => createSelector(
-  selectContractsDomain(),
+  selectContractsPageDomain(),
   (substate) => substate.toJS()
 );
 
 export default makeSelectContracts;
 export {
-  selectContractsDomain,
+  selectContractsPageDomain,
 };
