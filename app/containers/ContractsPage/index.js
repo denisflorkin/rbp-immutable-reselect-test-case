@@ -29,7 +29,7 @@ const fakeData = [
   },
 ]
 
-export class Contracts extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export class ContractsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const isFetching = false;
     return (
@@ -51,12 +51,12 @@ export class Contracts extends React.Component { // eslint-disable-line react/pr
   }
 }
 
-Contracts.propTypes = {
+ContractsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  Contracts: makeSelectContracts(),
+  contracts: makeSelectContracts(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -65,4 +65,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Contracts);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractsPage);

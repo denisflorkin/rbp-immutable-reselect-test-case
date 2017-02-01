@@ -1,19 +1,23 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import ListItem from '../index';
+import ContractListItem from '../index';
 
-describe('<ListItem />', () => {
+describe('<ContractListItem />', () => {
+  const contractFixture = {
+    title: 'sometitle',
+    value: 'somevalue',
+  }
+
   it('should have a className', () => {
-    const renderedComponent = mount(<ListItem className="test" />);
+    const renderedComponent = mount(<ContractListItem item={ contractFixture } />);
     expect(renderedComponent.find('li').prop('className')).toBeDefined();
   });
 
-  it('should render the content passed to it', () => {
-    const content = (<div>Hello world!</div>);
+  it('should render the "title" and "value" prop', () => {
     const renderedComponent = mount(
-      <ListItem item={content} />
+      <ContractListItem item={ contractFixture } />
     );
-    expect(renderedComponent.contains(content)).toBe(true);
+    expect(renderedComponent.contains(<p>{ contractFixture.title }</p>)).toBe(true);
   });
 });

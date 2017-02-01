@@ -15,7 +15,7 @@ function ContractListItem(props) {
 }
 
 ContractListItem.propTypes = {
-  item: React.PropTypes.any,
+  item: React.PropTypes.object,
 };
 
 export default ContractListItem;
