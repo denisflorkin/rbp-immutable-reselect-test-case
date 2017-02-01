@@ -1,18 +1,62 @@
 
 import {
-  defaultAction,
+  fetchContracts,
+  fetchContractsSuccess,
+  fetchContractsFail,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  FETCH_CONTRACTS,
+  FETCH_CONTRACTS_SUCCESS,
+  FETCH_CONTRACTS_FAIL,
 } from '../constants';
 
+
+const contractsFix = [
+  {
+    title: 'some title',
+    value: 'foo',
+  }, {
+    title: 'some other title',
+    value: 'bar',
+  }, {
+    title: 'yet another title',
+    value: 'foobar',
+  },
+]
+
 describe('Contracts actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('fetchContracts action', () => {
+    it('has a type of FETCH_CONTRACTS', () => {
+      const userIDFix = 'someUserID'
       const expected = {
-        type: DEFAULT_ACTION,
+        type: FETCH_CONTRACTS,
+        userID: userIDFix,
       };
-      expect(defaultAction()).toEqual(expected);
+
+      expect(fetchContracts(userIDFix)).toEqual(expected);
+    });
+  });
+
+  describe('fetchContractsSuccess action', () => {
+    it('has a type of FETCH_CONTRACTS_SUCCESS', () => {
+      const expected = {
+        type: FETCH_CONTRACTS_SUCCESS,
+        contracts: contractsFix,
+      };
+
+      expect(fetchContractsSuccess(contractsFix)).toEqual(expected);
+    });
+  });
+
+  describe('fetchContractsFail action', () => {
+    it('has a type of FETCH_CONTRACTS_FAIL', () => {
+      const errorFix = { message: 'some error msg' }
+      const expected = {
+        type: FETCH_CONTRACTS_FAIL,
+        error: errorFix,
+      };
+
+      expect(fetchContractsFail(errorFix)).toEqual(expected);
     });
   });
 });

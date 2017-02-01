@@ -28,7 +28,7 @@ export default function createRoutes(store) {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/HomePage'),
+          import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -44,7 +44,7 @@ export default function createRoutes(store) {
       name: 'dashboard',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/HomePage'),
+          import('containers/HomePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -59,7 +59,7 @@ export default function createRoutes(store) {
       path: '/profile',
       name: 'myProfile',
       getComponent(location, cb) {
-        System.import('containers/ProfilePage')
+        import('containers/ProfilePage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -68,10 +68,10 @@ export default function createRoutes(store) {
       name: 'userProfile',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/ProfilePage/actions'),
-          System.import('containers/ProfilePage/reducer'),
-          System.import('containers/ProfilePage/sagas'),
-          System.import('containers/ProfilePage'),
+          import('containers/ProfilePage/actions'),
+          import('containers/ProfilePage/reducer'),
+          import('containers/ProfilePage/sagas'),
+          import('containers/ProfilePage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -90,9 +90,10 @@ export default function createRoutes(store) {
       name: 'profileSettingsPage',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          System.import('containers/ProfileSettingsPage/reducer'),
-          System.import('containers/ProfileSettingsPage/sagas'),
-          System.import('containers/ProfileSettingsPage'),
+          // import('containers/ProfileSettingsPage/actions'),
+          import('containers/ProfileSettingsPage/reducer'),
+          import('containers/ProfileSettingsPage/sagas'),
+          import('containers/ProfileSettingsPage'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -107,18 +108,22 @@ export default function createRoutes(store) {
       },
     }, {
       path: '/contracts',
-      name: 'contracts',
+      name: 'contractsPage',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('containers/Contracts/reducer'),
-          import('containers/Contracts/sagas'),
-          import('containers/Contracts'),
+          import('containers/ContractsPage/reducer'),
+          import('containers/ContractsPage/sagas'),
+          import('containers/ContractsPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
         importModules.then(([reducer, sagas, component]) => {
-          injectReducer('contracts', reducer.default);
+          /**
+           * The first param of injectReducer `contractsPage`,
+           * is the way to defined the name that a key in the state will be name
+           */
+          injectReducer('contractsPage', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
         });
@@ -129,7 +134,7 @@ export default function createRoutes(store) {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
-        System.import('containers/NotFoundPage')
+        import('containers/NotFoundPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

@@ -1,30 +1,84 @@
 import { fromJS } from 'immutable';
 
-import // makeSelectContracts,
-{
+import {
   selectContractsPageDomain,
-}
-from '../selectors';
+  makeSelectContracts,
+  makeSelectIsFetching,
+  makeSelectError,
+} from '../selectors';
 
 
-// const selector = makeSelectContracts();
 const domainSelector = selectContractsPageDomain();
 
+const initialContractsStateFixture = fromJS({
+  contracts: false,
+  isFetching: false,
+  error: false,
+})
+
+const mockedGlobalState = fromJS({
+  contractsPage: initialContractsStateFixture,
+});
 
 describe('domainSelector', () => {
-  it('should select the home state', () => {
-    const initialContractsStateFixture = fromJS({
-      contracts: false,
-      isFetching: false,
-      error: false,
-    })
-
-    const mockedState = fromJS({
-      contracts: initialContractsStateFixture,
-    });
-    expect(domainSelector(mockedState))
+  it('should select the ContractsPage state', () => {
+    expect(domainSelector(mockedGlobalState))
       .toEqual(initialContractsStateFixture);
   });
+
+  describe('contractsSelector', () => {
+    it('it should select the contracts', () => {
+      const selector = makeSelectContracts()
+
+      const contractsFix = [{ some: 'stuff', someother: 'stuff' }]
+      const contractsStateFixture = fromJS({
+        contracts: contractsFix,
+      })
+
+      const mockedState = fromJS({
+        contractsPage: contractsStateFixture,
+      });
+
+      expect(selector(mockedState))
+        .toEqual(contractsFix)
+    })
+  })
+
+  describe('isFetchingSelector', () => {
+    it('it should select the isFetching value', () => {
+      const selector = makeSelectIsFetching()
+
+      const isFetchingFix = false
+      const contractsStateFixture = fromJS({
+        isFetching: isFetchingFix,
+      })
+
+      const mockedState = fromJS({
+        contractsPage: contractsStateFixture,
+      });
+
+      expect(selector(mockedState))
+        .toEqual(isFetchingFix)
+    })
+  })
+
+  describe('errorSelector', () => {
+    it('it should select the error value', () => {
+      const selector = makeSelectError()
+
+      const errorFix = { some: 'error' }
+      const contractsStateFixture = fromJS({
+        error: errorFix,
+      })
+
+      const mockedState = fromJS({
+        contractsPage: contractsStateFixture,
+      });
+
+      expect(selector(mockedState))
+        .toEqual(errorFix)
+    })
+  })
 });
 
 // describe('makeSelectUsername', () => {

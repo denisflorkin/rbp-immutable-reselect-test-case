@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect';
 
 import ContractsList from 'components/ContractsList'
 
-import makeSelectContracts from './selectors';
+import { makeSelectContracts } from './selectors';
 import messages from './messages';
 
 
@@ -52,7 +52,7 @@ export class ContractsPage extends React.Component { // eslint-disable-line reac
 }
 
 ContractsPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   contracts: PropTypes.func.isRequired,
 };
 
