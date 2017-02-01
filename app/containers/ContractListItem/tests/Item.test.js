@@ -16,12 +16,12 @@ describe('<Item />', () => {
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Item id={id} />);
+    const renderedComponent = shallow(<Item id={ id } />);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Item attribute={'test'} />);
+    const renderedComponent = shallow(<Item attribute={ 'test' } />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
