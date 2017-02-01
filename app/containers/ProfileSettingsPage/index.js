@@ -27,8 +27,6 @@ import // selectProfileSettingsPageDomain,
 
 import {
   updateSetting,
-  // updateSettingSuccess,
-  // updateSettingFail,
 } from './actions'
 
 import messages from './messages';
@@ -64,16 +62,14 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
 
   render() {
     const { userData } = this.props
-    const {
-      error,
-      isFetching,
-      settingUpdateName,
-      settingUpdateValue,
-      successResponse,
-    } = this.props
-
-    console.log(error, isFetching, settingUpdateName, settingUpdateValue, successResponse)
-
+    const { // eslint-disable-line no-unused-vars
+      error,  // eslint-disable-line no-unused-vars
+      isFetching,  // eslint-disable-line no-unused-vars
+      settingUpdateName,  // eslint-disable-line no-unused-vars
+      settingUpdateValue,  // eslint-disable-line no-unused-vars
+      successResponse,  // eslint-disable-line no-unused-vars
+    } = this.props // eslint-disable-line no-unused-vars
+    // console.log(error, isFetching, settingUpdateName, settingUpdateValue, successResponse)
 
     return (
       <div>
