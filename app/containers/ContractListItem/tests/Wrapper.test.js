@@ -16,12 +16,12 @@ describe('<Wrapper />', () => {
 
   it('should adopt a valid attribute', () => {
     const id = 'test';
-    const renderedComponent = shallow(<Wrapper id={id} />);
+    const renderedComponent = shallow(<Wrapper id={ id } />);
     expect(renderedComponent.prop('id')).toEqual(id);
   });
 
   it('should not adopt an invalid attribute', () => {
-    const renderedComponent = shallow(<Wrapper attribute={'test'} />);
+    const renderedComponent = shallow(<Wrapper attribute={ 'test' } />);
     expect(renderedComponent.prop('attribute')).toBeUndefined();
   });
 });
