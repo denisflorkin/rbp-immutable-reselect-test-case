@@ -23,12 +23,15 @@ describe('<Header />', () => {
     const fullyRenderedComp =
       mount(
         <IntlProvider locale="fr" >
-          <Header pathname={ '/about' } { ...props } />
+          <Header pathname={ '/a-propos' } { ...props } />
         </IntlProvider>
       )
 
-    const activeRouteLink = fullyRenderedComp.find('.active-route')
+    const activeRouteLink = fullyRenderedComp.find('a.active-route span')
+    // const activeRouteLink = fullyRenderedComp.findAllInRenderedTree('a.active-route span')
 
-    expect(activeRouteLink.text()).toBe('About')
+    console.log(activeRouteLink)
+
+    expect(activeRouteLink.text()).toEqual('A propos')
   })
 });
