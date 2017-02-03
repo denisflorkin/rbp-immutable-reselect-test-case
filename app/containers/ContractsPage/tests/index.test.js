@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { ContractsPage } from '../index';
+import { ContractsPage, mapDispatchToProps } from '../index';
+
+// import { mapDispatchToProps } from '../index'
 
 // describe('<ContractsPage />', () => {
 //   it('Expect to have unit tests specified', () => {
@@ -16,4 +18,12 @@ describe('<ContractsPage />', () => {
     );
     expect(renderedComponent.find('div').length).toEqual(1);
   });
+
+  describe('mapDispatchToProps', () => {
+    it('shoulld return and empty object', () => {
+      const ret = mapDispatchToProps()
+
+      expect(ret).toEqual({})
+    })
+  })
 });
