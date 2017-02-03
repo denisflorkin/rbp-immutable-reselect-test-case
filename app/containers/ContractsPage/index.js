@@ -21,22 +21,23 @@ import {
 import messages from './messages';
 
 
-const fakeData = [
-  {
-    title: 'some title',
-    value: 'foo',
-  }, {
-    title: 'some other title',
-    value: 'bar',
-  }, {
-    title: 'yet another title',
-    value: 'foobar',
-  },
-]
+// const fakeData = [
+//   {
+//     title: 'some title',
+//     value: 'foo',
+//   }, {
+//     title: 'some other title',
+//     value: 'bar',
+//   }, {
+//     title: 'yet another title',
+//     value: 'foobar',
+//   },
+// ]
 
 export class ContractsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const isFetching = false;
+    // const isFetching = false;
+    const { contracts, isFetching, error } = this.props
     return (
       <div>
         <Helmet
@@ -46,9 +47,9 @@ export class ContractsPage extends React.Component { // eslint-disable-line reac
           ] }
         />
         <ContractsList
-          contracts={ fakeData }
+          contracts={ contracts }
           loading={ isFetching }
-          error={ false }
+          error={ error }
         />
         <FormattedMessage { ...messages.header } />
       </div>

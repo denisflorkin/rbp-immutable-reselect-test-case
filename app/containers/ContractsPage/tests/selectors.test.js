@@ -29,8 +29,8 @@ describe('domainSelector', () => {
   describe('contractsSelector', () => {
     it('it should select the contracts', () => {
       const selector = makeSelectContracts()
-
-      const contractsFix = [{ some: 'stuff', someother: 'stuff' }]
+      /*
+      const contractsFix = fromJS([{ some: 'stuff', someother: 'stuff' }])
       const contractsStateFixture = fromJS({
         contracts: contractsFix,
       })
@@ -38,10 +38,17 @@ describe('domainSelector', () => {
       const mockedState = fromJS({
         contractsPage: contractsStateFixture,
       });
+      */
+      const contracts = fromJS([]);
+      const mockedState = fromJS({
+        contractsPage: {
+          contracts
+        },
+      });
 
       expect(selector(mockedState))
       // expect(selector(mockedState).toJS()) // this make the test pass but its weird, where is the toJS call hapening in the actual app code ?
-        .toEqual(contractsFix)
+        .toEqual(contracts)
     })
   })
 

@@ -105,7 +105,7 @@
       "semi": 0,
       "array-bracket-spacing": [
         1,
-        "always",
+        "never",
         {
           "objectsInArrays": false,
           "arraysInArrays": false

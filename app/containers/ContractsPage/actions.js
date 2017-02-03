@@ -10,10 +10,9 @@ import {
   FETCH_CONTRACTS_FAIL,
 } from './constants';
 
-export function fetchContracts(userID) {
+export function fetchContracts() {
   return {
     type: FETCH_CONTRACTS,
-    userID,
   };
 }
 

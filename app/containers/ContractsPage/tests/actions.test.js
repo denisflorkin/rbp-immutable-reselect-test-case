@@ -27,13 +27,13 @@ const contractsFix = [
 describe('Contracts actions', () => {
   describe('fetchContracts action', () => {
     it('has a type of FETCH_CONTRACTS', () => {
-      const userIDFix = 'someUserID'
+      // const userIDFix = 'someUserID'
       const expected = {
         type: FETCH_CONTRACTS,
-        userID: userIDFix,
+        // userID: userIDFix,
       };
 
-      expect(fetchContracts(userIDFix)).toEqual(expected);
+      expect(fetchContracts()).toEqual(expected);
     });
   });
 

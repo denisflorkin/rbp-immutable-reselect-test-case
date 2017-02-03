@@ -57,24 +57,23 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
 
   preRenderUserProfile(userData) {
     return userData ?
-      (<UserProfileSettings { ...userData } />) : (<p>loading</p>)
+      (<UserProfileSettings {...userData} />) : (<p>loading</p>)
   }
 
   render() {
     const { userData } = this.props
-    const { // eslint-disable-line no-unused-vars
-      error,  // eslint-disable-line no-unused-vars
-      isFetching,  // eslint-disable-line no-unused-vars
+    const {               // eslint-disable-line no-unused-vars
+      error,              // eslint-disable-line no-unused-vars
+      isFetching,         // eslint-disable-line no-unused-vars
       settingUpdateName,  // eslint-disable-line no-unused-vars
-      settingUpdateValue,  // eslint-disable-line no-unused-vars
-      successResponse,  // eslint-disable-line no-unused-vars
-    } = this.props // eslint-disable-line no-unused-vars
-    // console.log(error, isFetching, settingUpdateName, settingUpdateValue, successResponse)
+      settingUpdateValue, // eslint-disable-line no-unused-vars
+      successResponse,    // eslint-disable-line no-unused-vars
+    } = this.props        // eslint-disable-line no-unused-vars
 
     return (
       <div>
         { this.getHelmet(userData) }
-        <FormattedMessage { ...messages.header } />
+        <FormattedMessage {...messages.header} />
         { this.preRenderUserProfile(userData) }
       </div>
     );

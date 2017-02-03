@@ -111,6 +111,7 @@ export default function createRoutes(store) {
       name: 'contractsPage',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('containers/ContractsPage/actions'),
           import('containers/ContractsPage/reducer'),
           import('containers/ContractsPage/sagas'),
           import('containers/ContractsPage'),
@@ -118,14 +119,17 @@ export default function createRoutes(store) {
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
+        importModules.then(([actions, reducer, sagas, component]) => {
           /**
            * The first param of injectReducer `contractsPage`,
-           * is the way to defined the name that a key in the state will be name
+           * is the way to defined the name that a key in the state will be name i assume
            */
           injectReducer('contractsPage', reducer.default);
           injectSagas(sagas.default);
           renderRoute(component);
+
+          // dispatch the fetchContracts action
+          store.dispatch(actions.fetchContracts())
         });
 
         importModules.catch(errorLoading);
