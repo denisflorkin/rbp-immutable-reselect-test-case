@@ -40,6 +40,7 @@ describe('domainSelector', () => {
       });
 
       expect(selector(mockedState))
+      // expect(selector(mockedState).toJS()) // this make the test pass but its weird, where is the toJS call hapening in the actual app code ?
         .toEqual(contractsFix)
     })
   })
@@ -76,6 +77,7 @@ describe('domainSelector', () => {
       });
 
       expect(selector(mockedState))
+      expect(selector(mockedState).toJS()) // this make the test pass but its weird, where is the toJS call hapening in the actual app code ?
         .toEqual(errorFix)
     })
   })

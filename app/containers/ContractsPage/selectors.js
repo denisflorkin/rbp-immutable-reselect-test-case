@@ -10,7 +10,7 @@ const selectContractsPageDomain = () => (state) => state.get('contractsPage');
  */
 const makeSelectContracts = () => createSelector(
   selectContractsPageDomain(),
-  (substate) => substate.get('contracts').toJS()
+  (substate) => substate.get('contracts')// .toJS()
 );
 
 const makeSelectIsFetching = () => createSelector(
@@ -20,7 +20,7 @@ const makeSelectIsFetching = () => createSelector(
 
 const makeSelectError = () => createSelector(
   selectContractsPageDomain(),
-  (substate) => substate.get('error').toJS()
+  (substate) => substate.get('error')// .toJS()
 );
 
 /**

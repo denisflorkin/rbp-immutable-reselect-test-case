@@ -12,7 +12,12 @@ import { createStructuredSelector } from 'reselect';
 
 import ContractsList from 'components/ContractsList'
 
-import { makeSelectContracts } from './selectors';
+import {
+  makeSelectContracts,
+  makeSelectIsFetching,
+  makeSelectError,
+} from './selectors';
+
 import messages from './messages';
 
 
@@ -53,16 +58,26 @@ export class ContractsPage extends React.Component { // eslint-disable-line reac
 
 ContractsPage.propTypes = {
   // dispatch: PropTypes.func.isRequired,
-  contracts: PropTypes.func.isRequired,
+  contracts: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array,
+  ]).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]).isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   contracts: makeSelectContracts(),
+  isFetching: makeSelectIsFetching(),
+  error: makeSelectError(),
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(/* dispatch */) {
   return {
-    dispatch,
+    // dispatch, // default action trigger in routes.js
   };
 }
 
