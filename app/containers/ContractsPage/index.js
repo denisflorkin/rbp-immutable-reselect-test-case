@@ -76,10 +76,13 @@ const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
 });
 
-function mapDispatchToProps(/* dispatch */) {
+/*
+function mapDispatchToProps(dispatch) {
   return {
     // dispatch, // default action trigger in routes.js
   };
 }
+*/
+// export default connect(mapStateToProps, mapDispatchToProps)(ContractsPage);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractsPage);
+export default connect(mapStateToProps, () => {})(ContractsPage);
