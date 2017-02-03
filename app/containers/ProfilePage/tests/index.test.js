@@ -1,12 +1,13 @@
 import { shallow } from 'enzyme';
 import React from 'react';
+import UserProfile from 'components/UserProfile';
+import Link from 'components/Link'
+
 import {
   ProfilePage,
-  // mapDispatchToProps // not really need to test as it does nothing actually
+  mapDispatchToProps
 } from '../index';
-import UserProfile from '../../../components/UserProfile';
-// import expect from 'expect';
-// import Link from '../../../components/Link'
+
 
 const testUserData = {
   isFetching: false,
@@ -55,56 +56,50 @@ describe('<ProfilePage />', () => {
       .toEqual(true);
   });
 
-  /*
-  there are no method to map, only props.
   describe('mapDispatchToProps', () => {
-    describe('onChangeUsername', () => {
-      it('should be injected', () => {
-        // const dispatch = expect.createSpy();
-        const dispatch = jest.fn()
-        const result = mapDispatchToProps(dispatch);
-        expect(result.onChangeUserName).toBeDefined();
-      });
-    });
-  });
-  */
+    it('shoulld return and empty object', () => {
+      const ret = mapDispatchToProps()
 
-  /*
+      expect(ret).toEqual({})
+    })
+  })
+
   describe('getProfileSettingsLink method', () => {
     const userDataFix = false
     const profileDataFix = false
-    describe('it should return an empty array if PROFILE data are not loaded yet', () => {
-      const renderedComponent = shallow(<ProfilePage />)
-      const getProfileSettingsLink =
-        renderedComponent.instance().getProfileSettingsLink()
+
+    const renderedComponent = shallow(<ProfilePage />)
+    const getProfileSettingsLink =
+      renderedComponent.instance().getProfileSettingsLink
+
+    it('should return an empty array if PROFILE data are not loaded yet', () => {
+      // const renderedComponent = shallow(<ProfilePage />)
+      // const getProfileSettingsLink =
+      //   renderedComponent.instance().getProfileSettingsLink()
 
       expect(getProfileSettingsLink(userDataFix, profileDataFix)).toEqual([])
     })
 
-    describe('it should return an empty array if LOGEDINUSER data are not loaded yet', () => {
-      const renderedComponent = shallow(<ProfilePage />)
-      const getProfileSettingsLink =
-        renderedComponent.instance().getProfileSettingsLink()
+    it('it should return an empty array if LOGEDINUSER data are not loaded yet', () => {
+      // const renderedComponent = shallow(<ProfilePage />)
+      // const getProfileSettingsLink =
+      //   renderedComponent.instance().getProfileSettingsLink()
 
       expect(getProfileSettingsLink(userDataFix, profileDataFix)).toEqual([])
     })
-    describe('it should return a Link if userData.userID match profileData.userID ', () => {
-      const renderedComponent = shallow(<ProfilePage />)
+
+    it('should return a Link if userData.userID match profileData.userID ', () => {
+      // const renderedComponent = shallow(<ProfilePage />)
       // renderedComponent.instance().getProfileSettingsLink()
       const userDataFixture = { userID: 'foo' }
       const profileDataFixture = { userID: 'foo' }
 
       // call instance method
-      renderedComponent.instance().getProfileSettingsLink(userDataFixture, profileDataFixture)
+      const result = getProfileSettingsLink(userDataFixture, profileDataFixture)
 
-      expect(renderedComponent.contains(<Link />)).toEqual(true)
+      // expect(getProfileSettingsLink(userDataFixture, profileDataFixture))
+      expect(result)
+        .toEqual(<Link to="/profile-settings" >EDIT</Link>)
     })
   })
-  */
-
-  // it('should render edit my infos button appropriately', () => {
-  //   expect(false).toEqual(true);
-  // });
-
-  // test if 'edit my infos btn' is rendered appropriately
 });
