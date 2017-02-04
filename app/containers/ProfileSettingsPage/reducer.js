@@ -6,9 +6,9 @@
 
 import { fromJS } from 'immutable';
 import {
-  REQUEST_SETTINGS_UPDATE,
-  REQUEST_SETTINGS_UPDATE_SUCCESS,
-  REQUEST_SETTINGS_UPDATE_FAIL,
+  REQUEST_SETTING_UPDATE,
+  REQUEST_SETTING_UPDATE_SUCCESS,
+  REQUEST_SETTING_UPDATE_FAIL,
 } from './constants';
 
 const initialState = fromJS({
@@ -21,7 +21,7 @@ const initialState = fromJS({
 
 function profileSettingsPageReducer(state = initialState, action) {
   switch (action.type) {
-    case REQUEST_SETTINGS_UPDATE:
+    case REQUEST_SETTING_UPDATE:
       return state
         .set('isFetching', true)
         .set('error', false)
@@ -29,12 +29,12 @@ function profileSettingsPageReducer(state = initialState, action) {
         .set('requestedSettingUpdateName', action.payload.name)
         .set('requestedSettingUpdateValue', action.payload.value)
 
-    case REQUEST_SETTINGS_UPDATE_SUCCESS:
+    case REQUEST_SETTING_UPDATE_SUCCESS:
       return state
         .set('isFetching', false)
         .set('successResponse', action.response)
 
-    case REQUEST_SETTINGS_UPDATE_FAIL:
+    case REQUEST_SETTING_UPDATE_FAIL:
       return state
         .set('isFetching', false)
         .set('successResponse', false)
