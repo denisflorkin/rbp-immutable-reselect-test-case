@@ -10,7 +10,6 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { REQUEST_SETTING_UPDATE } from '../constants';
 
 import {
-  updateSetting,
   updateSettingSuccess,
   updateSettingFail,
 } from '../actions';
@@ -64,7 +63,7 @@ describe('contractsData Saga', () => {
 
   it('should start task to watch for REQUEST_SETTING_UPDATE action', () => {
     const takeLatestDescriptor = userSettingsUpdateGen.next().value;
-    expect(takeLatestDescriptor).toEqual(takeLatest(REQUEST_SETTING_UPDATE, updateSetting));
+    expect(takeLatestDescriptor).toEqual(takeLatest(REQUEST_SETTING_UPDATE, requestSettingUpdate));
   });
 
   it('should yield until LOCATION_CHANGE action', () => {
