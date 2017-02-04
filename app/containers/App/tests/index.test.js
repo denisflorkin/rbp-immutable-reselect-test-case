@@ -60,7 +60,16 @@ describe('<App />', () => {
       expect(ret.onRequestDefaultData).toBeDefined()
     })
 
+    // or another test could be :
+    // instanciate decorated component
+    // find its componentDidMount method
+    // call it and see if this dispatch an action
+
     it('should dispatch loadDefaultData action on componentDidMount', () => {
+      // mock the decoration of the componenet so that onRequestDefaultData is a mocked fn we can follow
+      // instanciate a component
+      // call componennetDidMount on it (if not already done automatically by the instanciation
+      // check that the mocked fn has been called
       const renderedComponent = shallow(<App />)
 
       const componentDidMount = // eslint-disable-line no-unused-vars
