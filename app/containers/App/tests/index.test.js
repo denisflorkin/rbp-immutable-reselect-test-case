@@ -3,7 +3,8 @@ import React from 'react'
 import { shallow, /* mount */ } from 'enzyme'
 // import sinon from 'sinon'
 
-import { App } from '../index'
+import { App, mapDispatchToProps } from '../index'
+// import decoratedApp from '../index'
 // import connectedApp from '../index'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
@@ -51,19 +52,22 @@ describe('<App />', () => {
     expect(renderedComponent.contains(children)).toEqual(true);
   });
 
-/** THis shit won't fucking work and doc is useless
 
-  fit('should call requestDefaultData on componentDidMount', () => {
-    const requestDefaultData = jest.fn()
-    const wrapper = mount(
-      <IntlProvider locale="fr" >
-        <connectedApp
-          router={{ ...router }}
-        />
-      </IntlProvider>
-    )
-    console.log(requestDefaultData.mock)
-    expect(requestDefaultData.mock.calls.length).toBe(1);
-  });
-  */
+  describe('mapDispatchToProps', () => {
+    it('should return an object with onRequestDefaultData properties defiend on it', () => {
+      const dispatchFix = () => {}
+      const ret = mapDispatchToProps(dispatchFix)
+      expect(ret.onRequestDefaultData).toBeDefined()
+    })
+
+    it('should dispatch loadDefaultData action on componentDidMount', () => {
+      const renderedComponent = shallow(<App />)
+
+      const componentDidMount = // eslint-disable-line no-unused-vars
+        renderedComponent.instance().componentDidMount
+
+      // then do something to test this out
+      expect(true).toEqual(false)
+    })
+  })
 });

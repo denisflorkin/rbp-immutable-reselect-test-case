@@ -12,7 +12,7 @@ import { createStructuredSelector } from 'reselect'
 
 import UserProfileSettings from 'components/UserProfileSettings'
 
-import { selectUserData } from 'containers/App/selectors'
+import { makeSelectUserData } from 'containers/App/selectors'
 
 import // selectProfileSettingsPageDomain,
 {
@@ -81,7 +81,7 @@ export class ProfileSettingsPage extends React.PureComponent { // eslint-disable
 }
 
 const mapStateToProps = createStructuredSelector({
-  userData: selectUserData(),
+  userData: makeSelectUserData(),
   profileSettingsPage: selectProfileSettingsPage(),
   error: selectError(),
   isFetching: selectIsFetching(),

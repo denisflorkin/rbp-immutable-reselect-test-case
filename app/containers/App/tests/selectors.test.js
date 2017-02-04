@@ -1,39 +1,82 @@
+
 import { fromJS } from 'immutable';
-// import expect from 'expect';
 
 import {
-  makeSelectLocationState,
-  // selectUserData,
   selectGlobal,
+  makeSelectUserData,
+  makeSelectLocationState,
+  makeSelectUserID,
 } from 'containers/App/selectors';
 
-describe('selectGlobal', () => {
-  const globalSelector = selectGlobal();
-  it('should select the global state', () => {
-    const globalState = fromJS({});
-    const mockedState = fromJS({
-      global: globalState,
+
+describe('App selectors', () => {
+  describe('selectGlobal', () => {
+    const globalSelector = selectGlobal();
+    it('should select the global state', () => {
+      const globalState = fromJS({});
+      const mockedState = fromJS({
+        global: globalState,
+      });
+      expect(globalSelector(mockedState))
+        .toEqual(globalState);
     });
-    expect(globalSelector(mockedState))
-      .toEqual(globalState);
   });
-});
 
+  describe('makeSelectUserData', () => {
+    const userDataSelector = makeSelectUserData()
 
-describe('makeSelectLocationState', () => {
-  const locationSelector = makeSelectLocationState()
-  it('should select the route as a plain JS object', () => {
-    const route = fromJS({
-      locationBeforeTransitions: null,
+    it('should select userData as a plain JS object', () => {
+      const userDataFix = fromJS({
+        username: 'billy',
+      });
+      // const mockedState = fromJS({
+      //     userData,
+      // });
+      const mockedGlobalState = fromJS({
+        global: {
+          userData: userDataFix
+        }
+      });
+      expect(userDataSelector(mockedGlobalState))
+        .toEqual(userDataFix.toJS());
     });
-    const mockedState = fromJS({
-      route,
-    });
-    expect(locationSelector(mockedState))
-      .toEqual(route.toJS());
   });
-});
 
+  describe('makeSelectUserID', () => {
+    const userDataSelector = makeSelectUserID()
+
+    it('should select userID in userData as a plain JS object', () => {
+      const userIdFix = 'someuserid'
+      const userDataFix = fromJS({
+        userID: userIdFix,
+      });
+      // const mockedState = fromJS({
+      //     userData,
+      // });
+      const mockedGlobalState = fromJS({
+        global: {
+          userData: userDataFix
+        }
+      });
+      expect(userDataSelector(mockedGlobalState))
+        .toEqual(userIdFix);
+    });
+  });
+
+  describe('makeSelectLocationState', () => {
+    const locationSelector = makeSelectLocationState()
+    it('should select the route as a plain JS object', () => {
+      const route = fromJS({
+        locationBeforeTransitions: null,
+      });
+      const mockedState = fromJS({
+        route,
+      });
+      expect(locationSelector(mockedState))
+        .toEqual(route.toJS());
+    });
+  });
+})
 
 /**
  * Something is wrong here :
