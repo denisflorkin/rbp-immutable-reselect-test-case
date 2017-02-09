@@ -26,19 +26,23 @@ describe('App selectors', () => {
     const userDataSelector = makeSelectUserData()
 
     it('should select userData as a plain JS object', () => {
-      const userDataFix = fromJS({
+      const userDataFix = {
         username: 'billy',
-      });
+      }
+      const userDataFixMap = fromJS({
+        username: 'billy',
+      })
       // const mockedState = fromJS({
-      //     userData,
+      //   userData: userDataFix,
       // });
       const mockedGlobalState = fromJS({
         global: {
-          userData: userDataFix
+          userData: userDataFixMap
+          // userData: userDataFix
         }
       });
       expect(userDataSelector(mockedGlobalState))
-        .toEqual(userDataFix.toJS());
+        .toEqual(userDataFix);
     });
   });
 
