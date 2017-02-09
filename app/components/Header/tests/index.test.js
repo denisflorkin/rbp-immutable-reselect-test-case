@@ -1,10 +1,10 @@
 
 // import expect from 'expect';
-import { shallow, mount } from 'enzyme';
+import { shallow /* , mount */ } from 'enzyme';
 import React from 'react';
 
 // import LanguageProvider from 'containers/LanguageProvider'
-import { IntlProvider } from 'react-intl';
+// import { IntlProvider } from 'react-intl';
 // import { translationMessages } from '../../../translations/en.json';
 
 // import Link from 'components/Link';
@@ -19,7 +19,7 @@ describe('<Header />', () => {
   it('should render a nav', () => {
     expect(renderComponent().type()).toEqual('nav');
   });
-
+/*
   it('should render an active classname depending on the route', () => {
     // const props = {}
     const fullyRenderedComp =
@@ -41,5 +41,7 @@ describe('<Header />', () => {
     expect(fullyRenderedComp.contains(<Link className="active-route"><span>A propos</span></Link>))
       .toEqual(true)
 */
+/*
   })
+  */
 });
