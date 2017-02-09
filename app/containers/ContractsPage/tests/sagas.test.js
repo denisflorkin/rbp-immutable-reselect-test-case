@@ -58,7 +58,7 @@ describe('getContractData Saga', () => {
 });
 
 
-describe('githubDataSaga Saga', () => {
+describe('contractsData Saga', () => {
   const contractsDataSaga = contractsData();
   const mockedTask = createMockTask();
 

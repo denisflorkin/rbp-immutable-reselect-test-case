@@ -5,17 +5,16 @@
  *
  */
 import { addLocaleData } from 'react-intl';
-
 import enLocaleData from 'react-intl/locale-data/en';
-import frLocaleData from 'react-intl/locale-data/fr';
+import deLocaleData from 'react-intl/locale-data/de';
 
-import { DEFAULT_LOCALE } from './containers/App/constants'; // eslint-disable-line
+import { DEFAULT_LOCALE } from '../app/containers/App/constants';
 
 import enTranslationMessages from './translations/en.json';
-import frTranslationMessages from './translations/fr.json';
+import deTranslationMessages from './translations/fr.json';
 
 addLocaleData(enLocaleData);
-addLocaleData(frLocaleData);
+addLocaleData(deLocaleData);
 
 export const appLocales = [
   'en',
@@ -36,5 +35,5 @@ export const formatTranslationMessages = (locale, messages) => {
 
 export const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
-  fr: formatTranslationMessages('fr', frTranslationMessages),
+  fr: formatTranslationMessages('de', deTranslationMessages),
 };

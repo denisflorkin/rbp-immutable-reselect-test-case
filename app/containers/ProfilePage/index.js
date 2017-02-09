@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 
 import { selectProfileData } from './selectors';
-import { selectUserData } from '../App/selectors';
+import { makeSelectUserData } from '../App/selectors';
 
 import Link from '../../components/Link'
 
@@ -28,7 +28,7 @@ export class ProfilePage extends React.PureComponent { // eslint-disable-line re
     return (
       loggedInUserData && profileData &&
       loggedInUserData.userID === profileData.userID) ?
-        (<p><Link to="/profile-settings" >EDIT</Link></p>) : ([])
+        (<Link to="/profile-settings" >EDIT</Link>) : ([])
   }
 
   getHelmet(profileData) {
@@ -64,7 +64,7 @@ export class ProfilePage extends React.PureComponent { // eslint-disable-line re
 
 // prep `mapStateToProps`for react-reduc connect
 const mapStateToProps = createStructuredSelector({
-  userData: selectUserData(),
+  userData: makeSelectUserData(),
   profileData: selectProfileData(),
 });
 

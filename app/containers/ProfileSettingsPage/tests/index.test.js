@@ -1,9 +1,11 @@
 
-import { shallow/* , mount */ } from 'enzyme';
-import React from 'react';
+import { shallow } from 'enzyme'
+import React from 'react'
 // import Helmet from 'react-helmet';
 
-import { ProfileSettingsPage, mapDispatchToProps } from '../index';
+import Helmet from 'react-helmet';
+import UserProfileSettings from 'components/UserProfileSettings'
+import { ProfileSettingsPage, mapDispatchToProps } from '../index'
 
 import { updateSetting } from '../actions'
 
@@ -15,7 +17,6 @@ describe('<ProfileSettingsPage />', () => {
   it('should render a div', () => {
     expect(renderComponent({}).find('div').length).toEqual(1);
   });
-/*
   describe('<ProfileSettingsPage /> getHelmet method', () => {
     it('render the meta appropriately if NO user data is passed', () => {
       const wrapper = renderComponent();
@@ -50,28 +51,27 @@ describe('<ProfileSettingsPage />', () => {
   describe('<ProfileSettingsPage /> preRenderUserProfile method', () => {
     it('renders a <p /> with "loading" string as child if userData are NOT passed', () => {
       const wrapper = renderComponent();
-      const getHelmet = wrapper.instance().preRenderUserProfile
+      const preRenderUserProfile = wrapper.instance().preRenderUserProfile
 
-      const usreDataFix = { username: 'bil' }
-      const result = getHelmet(usreDataFix)
+      const userDataFix = false
+      const result = preRenderUserProfile(userDataFix)
 
       expect(result).toEqual(<p>loading</p>)
     })
 
     it('renders a <UserProfileSettings /> if userData are passed', () => {
-      const renderComponent = (props = {}) => mount(
-        <ProfileSettingsPage { ...props } />
-      )
+      // const renderComponent = (props = {}) => shallow(
+      //   <ProfileSettingsPage { ...props } />
+      // )
       const wrapper = renderComponent();
-      const getHelmet = wrapper.instance().preRenderUserProfile
+      const preRenderUserProfile = wrapper.instance().preRenderUserProfile
 
-      const usreDataFix = { username: 'bil' }
-      const result = getHelmet(usreDataFix)
+      const userDataFix = { username: 'bil' }
+      const result = preRenderUserProfile(userDataFix)
 
-      expect(result).toContain(<UserProfileSettings { ...userData } />)
+      expect(result).toEqual(<UserProfileSettings { ...userDataFix } />)
     })
   })
-  */
 
   describe('mapDispatchToProps', () => {
     describe('onRequestSettingUpdate', () => {

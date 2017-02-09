@@ -6,18 +6,18 @@ import {
 } from '../actions'
 
 import {
-  REQUEST_SETTINGS_UPDATE,
-  REQUEST_SETTINGS_UPDATE_SUCCESS,
-  REQUEST_SETTINGS_UPDATE_FAIL,
+  REQUEST_SETTING_UPDATE,
+  REQUEST_SETTING_UPDATE_SUCCESS,
+  REQUEST_SETTING_UPDATE_FAIL,
 } from '../constants';
 
 describe('ProfileSettingsPage actions', () => {
   describe('updateSetting', () => {
-    it('has a type of REQUEST_SETTINGS_UPDATE', () => {
+    it('has a type of REQUEST_SETTING_UPDATE', () => {
       const name = 'n'
       const value = 'foo'
       const expected = {
-        type: REQUEST_SETTINGS_UPDATE,
+        type: REQUEST_SETTING_UPDATE,
         payload: {
           name,
           value,
@@ -29,10 +29,10 @@ describe('ProfileSettingsPage actions', () => {
 
 
   describe('updateSettingSuccess', () => {
-    fit('has a type of REQUEST_SETTINGS_UPDATE_SUCCESS', () => {
+    fit('has a type of REQUEST_SETTING_UPDATE_SUCCESS', () => {
       const response = { someKey: 'stuff' }
       const expected = {
-        type: REQUEST_SETTINGS_UPDATE_SUCCESS,
+        type: REQUEST_SETTING_UPDATE_SUCCESS,
         response,
       };
       expect(updateSettingSuccess(response)).toEqual(expected);
@@ -40,10 +40,10 @@ describe('ProfileSettingsPage actions', () => {
   });
 
   describe('updateSettingFail', () => {
-    it('has a type of REQUEST_SETTINGS_UPDATE_FAIL', () => {
+    it('has a type of REQUEST_SETTING_UPDATE_FAIL', () => {
       const error = new Error('some error message')
       const expected = {
-        type: REQUEST_SETTINGS_UPDATE_FAIL,
+        type: REQUEST_SETTING_UPDATE_FAIL,
         error,
       };
       expect(updateSettingFail(error)).toEqual(expected);

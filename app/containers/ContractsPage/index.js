@@ -70,16 +70,17 @@ ContractsPage.propTypes = {
   ]).isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({
+export const mapStateToProps = createStructuredSelector({
   contracts: makeSelectContracts(),
   isFetching: makeSelectIsFetching(),
   error: makeSelectError(),
 });
 
-function mapDispatchToProps(/* dispatch */) {
+export function mapDispatchToProps(dispatch) { // eslint-disable-line no-unused-vars
   return {
     // dispatch, // default action trigger in routes.js
   };
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(ContractsPage);
+
+// export default connect(mapStateToProps, () => {})(ContractsPage);

@@ -1,42 +1,32 @@
+import { DEFAULT_LOCALE } from '../containers/App/constants';
+import { formatTranslationMessages } from '../i18n';
 
-// import expect from 'expect';
+jest.mock('../translations/en.json', () => (
+  {
+    message1: 'default message',
+    message2: 'default message 2',
+  }
+));
 
-// import a locale value : 'en' // the formatTranslationMessages fn check for a DEFAULT_LOCALE
-import { DEFAULT_LOCALE } from '../containers/App/constants'; // eslint-disable-line
+const esTranslationMessages = {
+  message1: 'mensaje predeterminado',
+  message2: '',
+};
 
-// import the messages
-import enTranslationMessages from '../translations/en.json';
+describe('formatTranslationMessages', () => {
+  it('should build only defaults when DEFAULT_LOCALE', () => {
+    const result = formatTranslationMessages(DEFAULT_LOCALE, { a: 'a' });
 
-
-// import the thing to test
-import { formatTranslationMessages } from '../i18n'
-
-describe('i18n', () => {
-  it('given a valid locale and the messages \n it should return a JS object with the translation', () => {
-    const locale = 'en'
-    const messages = enTranslationMessages
-
-    expect(formatTranslationMessages(locale, messages))
-      .toEqual(enTranslationMessages);
+    expect(result).toEqual({ a: 'a' });
   });
 
-  it('should handle invalid/unexisting locale by checking for a DEFAULT_LOCALE', () => {
-    const locale = 'fr'
-    const messages = enTranslationMessages
 
-    expect(formatTranslationMessages(locale, messages))
-      .toEqual(enTranslationMessages);
+  it('should combine default locale and current locale when not DEFAULT_LOCALE', () => {
+    const result = formatTranslationMessages('', esTranslationMessages);
+
+    expect(result).toEqual({
+      message1: 'mensaje predeterminado',
+      message2: 'default message 2',
+    });
   });
-
-  it('should handle undefined locale by checking for a DEFAULT_LOCALE', () => {
-    const messages = enTranslationMessages
-
-    expect(formatTranslationMessages(undefined, messages))
-      .toEqual(enTranslationMessages);
-  });
-
-  // it('should throw if undefined messages passed', () => {
-  //   expect(formatTranslationMessages(undefined, undefined))
-  //     .toThrow(someError);
-  // });
 });

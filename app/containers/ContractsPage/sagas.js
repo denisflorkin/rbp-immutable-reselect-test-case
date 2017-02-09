@@ -15,15 +15,15 @@ import {
 } from './actions';
 
 
-export function* getContractData(action) {
+export function* getContractData(action) { // eslint-disable-line no-unused-vars
   const requestURL =
     'https://localhost/projects/neoapi/contracts/GET.json'
 
-  console.log(' *getContractData', action)
+  // console.log(' *getContractData', action)
 
   try {
     const contracts = yield call(request, requestURL);
-    console.log(' *getContractData contracts', contracts)
+    // console.log(' *getContractData contracts', contracts)
 
     yield put(fetchContractsSuccess(contracts));
   } catch (err) {
