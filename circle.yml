@@ -15,12 +15,9 @@ dependencies:
   override:
     - npm install
 
-database:
-  override:
-    - echo ''
     
 test:
   override:
-    - npm run test
-  post:
-    - npm run build
+    - npm run test && build 
+#  post: # using `post:` it seems we can run the build even if the test fails, this might sometimes be insightfull...
+#    - npm run build
