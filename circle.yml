@@ -10,7 +10,7 @@ dependencies:
     - npm --version
     - node --version
     - npm install -g n
-    - n latest
+    - sudo n latest
     - node --version
   override:
     - npm install
