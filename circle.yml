@@ -1,4 +1,7 @@
 dependencies:
+  pre:
+    - npm --version
+    - node --version
   override:
     - npm install
 
