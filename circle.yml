@@ -1,0 +1,13 @@
+dependencies:
+  override:
+    - npm install
+
+database:
+  override:
+    - echo ''
+    
+test:
+  override:
+    - npm run test
+  post:
+    - npm run build
