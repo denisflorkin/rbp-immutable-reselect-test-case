@@ -9,7 +9,7 @@ dependencies:
     - npm install -g npm
     - npm --version
     - node --version
-    - node install -g n
+    - npm install -g n
     - n latest
     - node --version
   override:
