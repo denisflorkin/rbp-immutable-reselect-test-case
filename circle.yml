@@ -6,6 +6,11 @@
 dependencies:
   pre:
     - npm --version
+    - npm install -g npm
+    - npm --version
+    - node --version
+    - node install -g n
+    - n latest
     - node --version
   override:
     - npm install
